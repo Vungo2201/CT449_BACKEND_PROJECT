@@ -2,7 +2,7 @@ const MongoDB = require("../utils/mongodb.util");
 const ApiError = require("../api-error");
 const ProductService = require("../services/product.service");
 exports.create = async (req, res, next) => {
-    if (!req.body?.name) {
+    if (!req.body?.TenHH) {
         return next(new ApiError(400, "Tên sản phẩm không thể để trống!"));
     }
     try {
@@ -20,9 +20,9 @@ exports.findAll = async (req, res, next) => {
 
     try {
         const  productService = new ProductService(MongoDB.client);
-        const { name } = req.query;
-        if (name) {
-            documents = await productService.findByName(name);
+        const { TenHH } = req.query;
+        if (TenHH) {
+            documents = await productService.findByName(TenHH);
         } else {
             documents = await productService.find({});
         }

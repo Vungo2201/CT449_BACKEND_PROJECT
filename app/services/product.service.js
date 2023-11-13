@@ -2,16 +2,17 @@ const { ObjectId } = require("mongodb");
 
 class ProductService {
     constructor(client) {
-        this.Product = client.db().collection("products");
+        this.Product = client.db().collection("HangHoa");
     }
 
     extracProductData(payload) {
         const product = {
-            name: payload.name,
-            price: payload.price,
-            description: payload.description,
-            urlImage: payload.urlImage,
-            favorite: payload.favorite,
+            TenHH: payload.TenHH,
+            Gia: payload.Gia,
+            MotaHH: payload.MotaHH,
+            SoLuongHang: payload.SoLuongHang,
+            GhiChu: payload.GhiChu,
+            HinhHH: payload.HinhHH,
         };
         // Remove undefined fields
         Object.keys(product).forEach(
@@ -24,7 +25,7 @@ class ProductService {
         const product = this.extracProductData(payload);
         const result = await this.Product.findOneAndUpdate(
             product,
-            { $set: { favorite: product.favorite === false } },
+            { $set: { GhiChu: product.GhiChu = "Còn Hàng" } },
             { returnDocument: "after", upsert: true }
         );
         return result;
@@ -35,9 +36,9 @@ class ProductService {
         return await cursor.toArray();
     }
 
-    async findByName(name) {
+    async findByName(TenHH) {
         return await this.find({
-            name: { $regex: new RegExp(name), $option: "i" },
+            TenHH: { $regex: new RegExp(TenHH), $option: "i" },
         });
     }
 
