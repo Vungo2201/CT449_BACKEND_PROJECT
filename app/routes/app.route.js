@@ -14,11 +14,12 @@ router.route("/products/:id")
     .put(products.update)
     .delete(products.delete);
 
-router.route("/users")
-    .post(users.signup)
-    .get(users.login);
-
-router.route("/admin")
-    .get(admin.adminlogin);
+router.route("/users/signup")
+    .post(users.signup);
+router.route("/users/login")
+    .post(users.login);
+    
+router.route("/admin/login")
+    .post(admin.login);
 
 module.exports = router;

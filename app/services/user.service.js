@@ -34,6 +34,14 @@ class UserService {
             return result;
         }
     }
+    async login(payload) {
+        const isExist = await this.User.findOne({"Email": payload.Email.trim()});
+        if(isExist === null)
+            return false;
+        else if(isExist.Password.trim() != payload.Password.trim()) 
+            return false;
+        else return true;
+    }
 }
 
 module.exports = UserService;
