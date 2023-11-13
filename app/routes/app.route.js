@@ -19,6 +19,6 @@ router.route("/users")
     .get(users.login);
 
 router.route("/admin")
-        .get(admin.adminlogin);
+    .get(admin.adminlogin);
 
 module.exports = router;
