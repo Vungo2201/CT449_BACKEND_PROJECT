@@ -23,8 +23,8 @@ exports.login = async (req, res, next) => {
         const  userService = new UserService(MongoDB.client);
         const check = await userService.login(req.body);
         if(!check)
-            return next(new ApiError(403, "Email hoặc tài khoản không đúng"));
-         return res.send({message: "Đăng nhập thành công"})
+            return res.send("Email hoặc tài khoản không đúng");
+        return res.send("Đăng nhập thành công")
     } catch (error) {
         return next(
             new ApiError(500, "Một lỗi đã xảy ra khi đăng nhập")

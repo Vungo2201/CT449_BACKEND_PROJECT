@@ -8,7 +8,7 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
-app.use("/shopAPI", appRouter);
+app.use("/api/shop", appRouter);
 
 app.get("/",(req, res) => {
     res.json({message: "Chào mừng đến với ứng dụng của shop"});
